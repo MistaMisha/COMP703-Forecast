@@ -1,0 +1,9 @@
+{
+  "forecast_date": "2025-10-13 21:14:18",
+  "total_products": 3700,
+  "total_outlets": 126,
+  "total_forecasts": 100061,
+  "total_units": 176648,
+  "csv_file": "forecast_2weeks.csv",
+  "version": "v2.8-velocity-optimized-with-outlet-id"
+}

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Store Manager - Admin Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+        }
+
+        .form-help {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .alert {
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div>
+                    <h1>Add New Store Manager</h1>
+                    <p style="color: #666; margin: 5px 0 0 0;">Create a new store manager account</p>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">← Back to Store Managers</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'error' if category == 'error' else category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <form method="post">
+                <div class="form-group">
+                    <label for="username">Manager Username *</label>
+                    <input type="text" 
+                           id="username" 
+                           name="username" 
+                           required 
+                           minlength="3"
+                           placeholder="Enter manager username">
+                    <div class="form-help">Must be at least 3 characters long and unique</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password *</label>
+                    <input type="password" 
+                           id="password" 
+                           name="password" 
+                           required 
+                           minlength="6"
+                           placeholder="Enter password">
+                    <div class="form-help">Must be at least 6 characters long</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Access Level *</label>
+                    <select id="role" name="role" required>
+                        <option value="user">Store Manager</option>
+                        <option value="admin">System Admin</option>
+                    </select>
+                    <div class="form-help">System Admins can manage other store managers and system settings</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="outlet_name">Store/Outlet Name</label>
+                        <input type="text" 
+                               id="outlet_name" 
+                               name="outlet_name"
+                               placeholder="Enter store name">
+                        <div class="form-help">Store location name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="outlet_id">Outlet ID</label>
+                        <input type="text" 
+                               id="outlet_id" 
+                               name="outlet_id"
+                               placeholder="Enter outlet ID">
+                        <div class="form-help">Unique identifier</div>
+                    </div>
+                </div>
+                <div class="form-help" style="margin-top: -10px; margin-bottom: 20px;">
+                    * At least one outlet identifier (name or ID) is required
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Store Manager</button>
+                    <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

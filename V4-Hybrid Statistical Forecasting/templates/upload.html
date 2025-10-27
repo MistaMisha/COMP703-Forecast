@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Upload Sales CSV</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 2.5rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      width: 500px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-weight: 700;
+      color: #333;
+      font-size: 1.75rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .logout-btn, .admin-btn, .results-btn {
+      color: white;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .logout-btn {
+      background: #dc3545;
+    }
+
+    .logout-btn:hover {
+      background: #c82333;
+    }
+
+    .admin-btn {
+      background: #4a90e2;
+    }
+
+    .admin-btn:hover {
+      background: #357ABD;
+    }
+
+    .results-btn {
+      background: #27ae60;
+    }
+
+    .results-btn:hover {
+      background: #1e8449;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    input[type="file"] {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      background-color: #fafafa;
+    }
+
+    input[type="file"]:focus,
+    input[type="file"]:hover {
+      border-color: #4a90e2;
+      outline: none;
+      background-color: #f0f8ff;
+    }
+
+    input[type="submit"] {
+      background-color: #4a90e2;
+      color: #fff;
+      border: none;
+      padding: 0.85rem 0;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 3px 8px rgba(74, 144, 226, 0.3);
+    }
+
+    input[type="submit"]:hover {
+      background-color: #357ABD;
+      box-shadow: 0 5px 15px rgba(53, 122, 189, 0.4);
+    }
+
+    .reset-link {
+      margin-top: 1rem;
+      display: inline-block;
+      font-size: 0.9rem;
+      color: #d9534f;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid #d9534f;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .reset-link:hover {
+      background-color: #d9534f;
+      color: white;
+    }
+
+    .flash-messages {
+      margin-bottom: 1.5rem;
+    }
+
+    .flash-message {
+      padding: 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .flash-error { background-color: #fee; color: #c33; border: 1px solid #fcc; }
+    .flash-success { background-color: #efe; color: #3c3; border: 1px solid #cfc; }
+    .flash-info { background-color: #eef; color: #33c; border: 1px solid #ccf; }
+
+    .requirements {
+      background: #f8f9fa;
+      border-left: 4px solid #4a90e2;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      text-align: left;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .requirements h3 {
+      margin-top: 0;
+      color: #4a90e2;
+      font-size: 1rem;
+    }
+
+    .requirements .section {
+      margin-bottom: 1rem;
+    }
+
+    .requirements .section-title {
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .requirements ul {
+      margin: 0.3rem 0 0 0;
+      padding-left: 1.2rem;
+    }
+
+    .requirements li {
+      margin-bottom: 0.3rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+
+    .requirements li strong {
+      color: #2c3e50;
+      font-family: 'Courier New', monospace;
+    }
+
+    .requirements .required {
+      color: #dc3545;
+    }
+
+    .requirements .optional {
+      color: #6c757d;
+    }
+
+    .requirements .note {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      padding: 0.5rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #856404;
+    }
+
+    @media (max-width: 550px) {
+      .container { width: 90%; padding: 2rem; }
+      .nav-buttons { flex-direction: column; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📊 Upload Sales CSV</h1>
+      <div class="nav-buttons">
+        {% if session.role == 'admin' %}
+        <a href="/admin" class="admin-btn">👤 Admin Panel</a>
+        {% endif %}
+        <a href="/results" class="results-btn">📈 View Results</a>
+        <a href="/logout" class="logout-btn">Logout</a>
+      </div>
+    </div>
+
+    <div class="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="flash-message flash-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="requirements">
+      <h3>📋 CSV Data Requirements</h3>
+      
+      <div class="section">
+        <div class="section-title">
+          <span class="required">✅ Required Columns</span>
+        </div>
+        <ul>
+          <li><strong>variant_name</strong> - Product name/variant</li>
+          <li><strong>quantity</strong> - Sales quantity (numeric)</li>
+          <li><strong>created_at</strong> - Date of sale (YYYY-MM-DD)</li>
+          <li><strong>product_id</strong> - Unique product identifier</li>
+          <li><strong>outlet_name</strong> - Store/outlet name</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-title">
+          <span class="optional">⚪ Optional Columns</span>
+        </div>
+        <ul>
+          <li><strong>product_type</strong> - Product category</li>
+          <li><strong>product_attribute</strong> - Product specifications</li>
+          <li><strong>outlet_id</strong> - Store/outlet ID</li>
+        </ul>
+      </div>
+
+      <div class="note">
+        <strong>💡 Tip:</strong> Minimum 365 days of historical sales data recommended for accurate forecasting.
+      </div>
+    </div>
+
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".csv" required />
+      <input type="submit" value="Upload & Generate Forecast" />
+    </form>
+
+    <a href="/reset" class="reset-link" onclick="return confirm('Are you sure you want to reset all data? This cannot be undone.')">🗑️ Reset All Data</a>
+  </div>
+</body>
+</html>

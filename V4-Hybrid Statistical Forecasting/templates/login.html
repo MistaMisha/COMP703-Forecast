@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            width: 350px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        
+        /* Flash Messages Styling */
+        .alert {
+            color: red;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            background: #fee;
+            border: 1px solid #fcc;
+        }
+        
+        .alert-success {
+            color: green;
+            background: #efe;
+            border: 1px solid #cfc;
+        }
+        
+        .alert-error {
+            color: red;
+            background: #fee;
+            border: 1px solid #fcc;
+        }
+        
+        .alert-warning {
+            color: orange;
+            background: #fff8e1;
+            border: 1px solid #ffcc80;
+        }
+        
+        .alert-info {
+            color: blue;
+            background: #e3f2fd;
+            border: 1px solid #90caf9;
+        }
+        
+        ul {
+            color: red;
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        li {
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <!-- Flash Messages with proper categorization -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'error' if category == 'error' else category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>

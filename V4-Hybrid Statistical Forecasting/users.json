@@ -1,0 +1,19 @@
+[
+  {
+    "username": "admin",
+    "password": "scrypt:32768:8:1$cwg2xAxBZziMR5h9$defc7c4e7f22a38ddad8a261efda57c444147df2ccaad8fa61cfa2d6de32f74fc116630e7e1b525a42b71e4f36cd6a682f4dbf5fa7a17f3dd11f80d069a6d810",
+    "role": "admin"
+  },
+  {
+    "username": "Tauranga Manger",
+    "password": "scrypt:32768:8:1$X4cAEMVNrazgTAwH$c68a62e3c52c9510c154e84f97b8c2ee8a84787b4924d8df3bb587ca02c9c4910ccaa537f6167dbb6f3cb98f0693669b0baec8dbac09a53b6b59ae7b4c68126b",
+    "role": "user",
+    "outlet_name": "Tauranga"
+  },
+  {
+    "username": "Papatoetoe Manager",
+    "password": "scrypt:32768:8:1$9M8zZiOTkBSMSm1y$6f24450d34c884f5051b6a80ca9a4dbb5ee6a75a5f5afa4503d7b47a4cf14e9d11e8622bc2bed6b30e2c77559ade3e3bc3d927356cfa98b128d40f80c0b5660c",
+    "role": "user",
+    "outlet_id": "0a7cdf41-c765-11ea-f4ff-f7b5f80b6c3d"
+  }
+]
