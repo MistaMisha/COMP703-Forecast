@@ -39,7 +39,7 @@ It leverages **hybrid statistical and machine-learning methods** to generate 14-
 
 ```bash
 # 1) Clone the repository
-git clone https://github.com/Kandyli007/AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-.git
+git clone https://github.com/MistaMisha/AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-.git
 cd AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-
 
 # 3) Install dependencies
