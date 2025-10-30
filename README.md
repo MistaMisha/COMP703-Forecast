@@ -2,13 +2,13 @@
 ### Shosha Sales Forecasting App – **V4 Hybrid Statistical Forecasting**
 
 This project is a Flask-based web application that powers **AI-driven demand forecasting** across multiple retail outlets.  
-It leverages **hybrid statistical and machine-learning methods** (including **LightGBM**) to generate 14-day forecasts of recommended stock quantities per outlet and per product.
+It leverages **hybrid statistical and machine-learning methods** to generate 14-day forecasts of recommended stock quantities per outlet and per product.
 
 ---
 
 ## 🚀 Key Features
 
-- **Hybrid Statistical Forecasting (V4):** Combines rule-based velocity segmentation, bias correction, and LightGBM-based pattern learning  
+- **Hybrid Statistical Forecasting (V4):** Combines rule-based velocity segmentation, bias correction
 - **Multi-Outlet, Multi-Product Forecasting:** Optimized for Shosha’s nationwide retail network  
 - **Recursive 14-Day Forecasts:** Adaptive prediction horizon  
 - **Dynamic Web Interface:** Upload CSV files and view interactive forecast results instantly  
@@ -20,7 +20,7 @@ It leverages **hybrid statistical and machine-learning methods** (including **Li
 
 ## 🧩 Tech Stack
 
-- **Backend:** Flask (Python 3.9+)  
+- **Backend:** Flask (Python 3.9+) + MongoDB
 - **Frontend:** HTML, CSS, Jinja2 templates  
 - **ML Core:** Hybrid Statistical Engine (v4)  
 - **Data Layer:** pandas + NumPy  
