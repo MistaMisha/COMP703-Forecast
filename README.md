@@ -38,10 +38,6 @@ It leverages **hybrid statistical and machine-learning methods** (including **Li
 ## 🧾 Steps to Run the App
 
 ```bash
-git clone https://github.com/Kandyli007/AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-.git
-cd AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-
-
-
 # 1) Clone the repository
 git clone https://github.com/Kandyli007/AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-.git
 cd AI-Powered-Inventory-Forecasting-for-Optimized-Stock-Management-
